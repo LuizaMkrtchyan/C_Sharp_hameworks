@@ -1,0 +1,44 @@
+using System;
+
+namespace Task_1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Task1. Show the horse strokes in the matrix [8,8]
+
+            int[,] arr = new int[8, 8];
+            Console.Write("i koordinat of the horse(0-7): ");
+            int x = int.Parse(Console.ReadLine());
+            Console.Write("j koordinat of the horse(0-7): ");
+            int y = int.Parse(Console.ReadLine());
+            
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if ((x - i == 2 || i - x == 2 ) && (y - j == 1 || j - y == 1) || (x - i == 1 || i - x == 1) && (y - j == 2 || j - y == 2))
+                    {
+                        arr[i, j] = 1;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(arr[i, j]+" ");
+                        Console.ResetColor();
+                    }
+                    else if(i==x && j == y)
+                    {
+                        arr[i, j] = 7;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(arr[i, j] + " ");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.Write(arr[i,j]+" ");
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
