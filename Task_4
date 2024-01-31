@@ -1,0 +1,65 @@
+using System;
+
+namespace Task_4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Random r = new Random();
+            //The horse (knight) will step from the mentioned field with random free fields once
+            int[,] board = new int[8, 8];
+            Console.Write("I koordinat: ");
+            int x = int.Parse(Console.ReadLine());
+            Console.Write("J koordinat: ");
+            int y = int.Parse(Console.ReadLine());
+            board[x, y] = 5;
+            bool t;
+            do
+            {
+                t = false;
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (board[i, j] == 5)
+                        {
+                            Console.ForegroundColor =ConsoleColor.Red;
+                            Console.Write(board[i, j] + " ");
+                            Console.ResetColor();
+                            board[i, j] = 3;
+                            //x = i;y = j;
+                        }
+                        else if (board[i, j] == 3)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(board[i, j] + " ");
+                            Console.ResetColor();
+                        }
+                        else
+                        {
+                            Console.Write(board[i, j] + " ");
+                        }
+                    }
+                    Console.WriteLine();
+                }
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (((x - i == 2 || i - x == 2) && (y - j == 1 || j - y == 1) || (x - i == 1 || i - x == 1) && (y - j == 2 || j - y == 2)) && board[i,j]!=3)
+                        {
+                            t = true;
+                            board[i, j] = 5;
+                            x = i; y = j;
+                            break;
+                        }
+                    }
+                    if (t == true) break;
+                }
+                Console.WriteLine("----------------------");
+            } while (t);
+
+        }
+    }
+}
