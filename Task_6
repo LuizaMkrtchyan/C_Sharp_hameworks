@@ -1,0 +1,48 @@
+using System;
+
+namespace Task_6
+{
+    class Program
+    {
+        static bool array_exists(int n,int m,int[,] arr,int ii,int jj)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    if (arr[i, j] == arr[ii,jj] && (i !=ii || j != jj))
+                        return true;
+                }
+            }
+            return false;
+        }
+        static void Main(string[] args)
+        {
+
+            // Task6. Randomly fill non-repeating numbers in an NxM matrix.
+
+            int n = 0, m = 0;
+            Console.Write("n=");
+            n=int.Parse(Console.ReadLine());
+            Console.Write("m=");
+            m = int.Parse(Console.ReadLine());
+
+            int[,] arr = new int[n, m];
+
+            Random rnd = new Random();
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    do
+                    {
+                        arr[i, j] = rnd.Next(-10, n*m);
+                    } while (array_exists(n, m, arr, i,j));
+                    Console.Write(arr[i,j]+"\t");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
