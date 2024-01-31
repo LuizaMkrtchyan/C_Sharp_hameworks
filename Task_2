@@ -1,0 +1,44 @@
+using System;
+
+namespace Task_2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Task2. Show the queen strokes in the matrix [8,8]
+
+            int[,] arr = new int[8, 8];
+            Console.Write("i koordinat of the queen(0-7): ");
+            int x = int.Parse(Console.ReadLine());
+            Console.Write("j koordinat of the queen(0-7): ");
+            int y = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if(i==x && j == y)
+                    {
+                        arr[i, j] = 5;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(arr[i, j] + " ");
+                        Console.ResetColor();
+                    }
+                    else if (i==x || j==y || j-i==y-x || i+j==x+y)
+                    {
+                        arr[i, j] = 1;
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.Write(arr[i, j] + " ");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.Write(arr[i, j] + " ");
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
